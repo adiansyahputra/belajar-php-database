@@ -1,0 +1,30 @@
+Pengenalan PDO
+
+PDO singkatan dari PHP Data Object
+Yaitu sebuah spesifikasi interface untuk standard komunikasi antara PHP dengan Database
+PDO adalah sebuah spesifikasi, sehingga kita butuh implementasinya atau extension nya untuk mengaktifkan PDO
+PDO menyediakan abstraction layer yang sama untuk semua database, artinya mau menggunakan database apapun, kita akan menggunakan kode PDO yang sama, dan cara kerjanya sama
+Hal ini membuat penggunaan PDO lebih flexible dibandingkan menggunakan function-function bawaan dari driver databasenya
+
+Mengecek PDO Extension yang Terinstall
+
+<?php
+
+phpinfo();
+
+PDO
+
+PDO support => enabled
+PDO drivers => mysql, pgsql, sqlite
+
+MySQL
+Pada course ini, kita akan menggunakan MySQL sebagai database yang akan kita gunakan untuk praktek PHP Database
+Jadi pastikan di komputer teman-teman sudah terinstall driver PDO untuk MySQL
+Jika teman-teman belum mengerti tentang MySQL, saya sarankan teman-teman belajar dulu di course yang pernah saya buat tentang MySQL
+
+Koneksi Database
+Sebelum kita melakukan manipulasi data ke database dengan mengirimkan perintah SQL, hal yang perlu kita lakukan terlebih dahulu adalah membuat koneksi ke database
+Untuk membuat koneksi ke database MySQL menggunakan PDO sangatlah mudah, kita hanya butuh membuat object PDO
+Dan saat kita membuat koneksi ke MySQL menggunakan PDO, kita perlu tentukan host, port, database name, username dan juga password nya
+
+Kode : Membuat Koneksi Database
