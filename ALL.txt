@@ -28,3 +28,80 @@ Untuk membuat koneksi ke database MySQL menggunakan PDO sangatlah mudah, kita ha
 Dan saat kita membuat koneksi ke MySQL menggunakan PDO, kita perlu tentukan host, port, database name, username dan juga password nya
 
 Kode : Membuat Koneksi Database
+<?php
+
+$host = "localhost";
+$port = 3306;
+$database = "belajar_php_database";
+$username = "root";
+$password = "";
+
+try {
+    $connection = new PDO("mysql:host=$host:$port;dbname=$database", $username, $password);
+    echo "Sukses terkoneksi ke database MySQL" . PHP_EOL;
+
+    // menutup koneksi
+    $connection = null;
+}catch (PDOException $exception){
+    echo "Gagal terkoneksi ke database MySQL : " . $exception->getMessage() . PHP_EOL;
+}
+
+Error PDOException
+Hampir semua error yang terjadi di PDO merupakan class exception dari PDOException atau class turunannya
+Sehingga jika kita ingin melakukan sesuatu jika terjadi komunikasi error ke database, kita bisa gunakan try catch 
+
+Kode : Try Catch PDOException
+<?php
+
+$host = "localhost";
+$port = 3306;
+$database = "belajar_php_database";
+$username = "root";
+$password = "";
+
+try {
+    $connection = new PDO("mysql:host=$host:$port;dbname=$database", $username, $password);
+    echo "Sukses terkoneksi ke database MySQL" . PHP_EOL;
+
+    // menutup koneksi
+    $connection = null;
+}catch (PDOException $exception){
+    echo "Gagal terkoneksi ke database MySQL : " . $exception->getMessage() . PHP_EOL;
+}
+
+Menutup Koneksi
+Jika kita telah selesai melakukan operasi ke database, lalu kita sudah tidak memerlukannya lagi, maka kita wajib menutup koneksi ke database nya
+Setiap database punya batas maksimal koneksi ke database, contohnya MySQL secara default batas maksimal nya adalah 151 koneksi
+Jika sampai kita lupa menutup koneksi sehingga koneksi dianggap masih terbuka, maka lama kelamaan koneksi bisa cepat mencapai maksimal koneksi, sehingga ketika kita ingin membuat koneksi baru, maka akan ditolak oleh MySQL
+
+Kode : Menutup Koneksi
+try {
+    $connection = new PDO("mysql:host=$host:$port;dbname=$database", $username, $password);
+    echo "Sukses terkoneksi ke database MySQL" . PHP_EOL;
+
+    // menutup koneksi
+    $connection = null;
+}catch (PDOException $exception){
+    echo "Gagal terkoneksi ke database MySQL : " . $exception->getMessage() . PHP_EOL;
+}
+
+Execute SQL
+Setelah kita terkoneksi ke database, sudah pasti kita ingin mengirim perintah SQL ke database tersebut dari aplikasi PHP kita
+Untuk mengirim perintah SQL, kita bisa menggunakan function execute(sql) yang terdapat di object PDO yang sudah kita buat
+Function execute(sql) bisa kita gunakan untuk semua jenis SQL yang tidak membutuhkan result data, misal CREATE TABLE, INSERT, UPDATE, DELETE, ALTER TABLE, dan lain-lain
+
+Kode : Membuat getConnection()
+<?php
+
+function getConnection(): PDO
+{
+    $host = "localhost";
+    $port = 3306;
+    $database = "belajar_php_database";
+    $username = "root";
+    $password = "";
+
+    return new PDO("mysql:host=$host:$port;dbname=$database", $username, $password);
+}
+
+Kode : Membuat Table Customers
