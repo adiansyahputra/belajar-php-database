@@ -105,3 +105,32 @@ function getConnection(): PDO
 }
 
 Kode : Membuat Table Customers
+CREATE TABLE customers
+(
+    id VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+Kode : Eksekusi SQL Menggunakan PDO
+<?php
+
+require_once __DIR__ . '/GetConnection.php';
+
+$connection = getConnection();
+
+$sql = <<<SQL
+    INSERT INTO customers(id, name, email)
+    VALUES ('khannedy', 'Khannedy', 'khannedy@test.com');
+SQL;
+
+$connection->exec($sql);
+
+$connection = null;
+
+Query SQL
+Setelah kita tahu bagaimana cara mengirim SQL ke MYSQL yang tidak membutuhkan result data, sekarang bagaimana melakukan Query SQL yang membutuhkan result data seperti SQL SELECT?
+PDO memiliki function bernama query(sql), ini digunakan untuk melakukan query data dari database
+Return value dari function query(sql) adalah sebuah object dari PDOStatement
+
